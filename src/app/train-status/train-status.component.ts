@@ -25,6 +25,10 @@ export class TrainStatusComponent implements OnInit {
                 this.trainRouteFiltered = x;
                 this.trainRoute = x;
                 this.trainRouteFiltered.schedule = this.trainRoute.schedule.filter(s => {
+                    s.from.timeDiff = this.calculateDelta(s.from.actual, s.from.scheduled);
+                    s.from.indicator = this.getIndicator(s.from.timeDiff);
+                    s.to.timeDiff = this.calculateDelta(s.to.actual, s.to.scheduled);
+                    s.to.indicator = this.getIndicator(s.to.timeDiff);
                     if (s.from.scheduled) {
                         return now <= s.from.scheduled.toDate();
                     } else {
@@ -33,5 +37,25 @@ export class TrainStatusComponent implements OnInit {
                 });
             }
         );
+    }
+
+    getIndicator(ms) {
+        if (ms > 120000) {
+            if (ms < 900000) {
+                return 'late';
+            } else {
+                return 'very-late';
+            }
+        } else {
+            return 'on-time';
+        }
+    }
+
+    calculateDelta(actualTime, scheduledTime) {
+        if (scheduledTime && actualTime) {
+            return actualTime.toDate() - scheduledTime.toDate();
+        } else {
+            return 0;
+        }
     }
 }

@@ -10,6 +10,8 @@ export interface Station {
 export interface StationStop extends Station {
     scheduled;
     actual;
+    timeDiff;
+    indicator: string;
 }
 
 export interface Schedule {

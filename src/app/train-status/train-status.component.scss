@@ -1,12 +1,29 @@
 .item {
-    border: 1px #ccc solid;
-    padding: 9px;
-    margin: 9px 0;
-    max-width: 100%;
-    width: 200px;
-    border-radius: 3px;
+    border-top: 1px #ccc dashed;
+    padding: 9px 0;
 }
 
 .item-container {
     padding: 9px;
+    max-width: 285px;
+}
+
+.mat-small {
+    color: #666;
+}
+
+.late {
+    color: #ff8f00;
+}
+
+.very-late {
+    color: #d82424;
+}
+
+.on-time {
+    color: green;
+}
+
+.blue {
+    color: #496ab7;
 }
