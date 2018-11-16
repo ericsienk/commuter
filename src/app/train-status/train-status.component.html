@@ -4,13 +4,13 @@
         {{item.trainNumber}}
         <div>
             <div class="mat-small">Departed</div>
-            <h3 class="margin-0px">{{item.from.actual.toDate() | date: 'shortTime'}}</h3>
-            <p class="mat-small">Scheduled {{item.from.scheduled.toDate() | date: 'shortTime'}}</p>
+            <h3 class="margin-0px" *ngIf="item.from.actual">{{item.from.actual.toDate() | date: 'shortTime'}}</h3>
+            <p class="mat-small" *ngIf="item.from.scheduled">Scheduled {{item.from.scheduled.toDate() | date: 'shortTime'}}</p>
         </div>
         <div>
             <div class="mat-small">Arrived</div>
-            <h3 class="margin-0px">{{item.to.actual.toDate() | date: 'shortTime'}}</h3>
-            <p class="mat-small">Scheduled {{item.to.scheduled.toDate() | date: 'shortTime'}}</p>
+            <h3 class="margin-0px" *ngIf="item.to.actual">{{item.to.actual.toDate() | date: 'shortTime'}}</h3>
+            <p class="mat-small" *ngIf="item.to.scheduled">Scheduled {{item.to.scheduled.toDate() | date: 'shortTime'}}</p>
         </div>
         <br/>
         <br/>
