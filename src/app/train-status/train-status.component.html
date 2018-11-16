@@ -9,7 +9,7 @@
                 {{item.from.actual.toDate() | date: 'shortTime'}}
                 <span *ngIf="item.from.timeDiff" class="mat-small">{{item.from.timeDiff ? '+': ''}}{{item.from.timeDiff | date: 'm'}} min</span>
             </h3>
-            <p class="mat-small" *ngIf="item.from.scheduled">Scheduled {{item.from.scheduled.toDate() | date: 'shortTime'}}</p>
+            <p class="mat-small margin-0px" *ngIf="item.from.scheduled">Scheduled {{item.from.scheduled.toDate() | date: 'shortTime'}}</p>
         </div>
         <div>
             <div class="mat-small">Arrive</div>
@@ -17,7 +17,7 @@
                 {{item.to.actual.toDate() | date: 'shortTime'}}
                 <span *ngIf="item.to.timeDiff" class="mat-small">{{item.to.timeDiff ? '+': ''}}{{item.to.timeDiff | date: 'm'}} min</span>
             </h3>
-            <p class="mat-small" *ngIf="item.to.scheduled">Scheduled {{item.to.scheduled.toDate() | date: 'shortTime'}}</p>
+            <p class="mat-small margin-0px" *ngIf="item.to.scheduled">Scheduled {{item.to.scheduled.toDate() | date: 'shortTime'}}</p>
         </div>
     </div>
 </div>
