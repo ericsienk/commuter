@@ -1,18 +1,17 @@
-<div *ngIf="(route$ | async) as route">
-    <h3>{{route.from.station}} to {{route.to.station}}</h3>
-    <div *ngFor="let item of route.schedule">
+<div *ngIf="trainRouteFiltered" class="item-container">
+    <h3>{{trainRouteFiltered.from.station}} to {{trainRouteFiltered.to.station}}</h3>
+    <p>Last updated {{trainRouteFiltered.lastUpdated.toDate() | date: 'medium'}}</p>
+    <div *ngFor="let item of trainRouteFiltered.schedule" class="item">
         {{item.trainNumber}}
         <div>
-            <div class="mat-small">Departed</div>
+            <div class="mat-small">Depart</div>
             <h3 class="margin-0px" *ngIf="item.from.actual">{{item.from.actual.toDate() | date: 'shortTime'}}</h3>
             <p class="mat-small" *ngIf="item.from.scheduled">Scheduled {{item.from.scheduled.toDate() | date: 'shortTime'}}</p>
         </div>
         <div>
-            <div class="mat-small">Arrived</div>
+            <div class="mat-small">Arrive</div>
             <h3 class="margin-0px" *ngIf="item.to.actual">{{item.to.actual.toDate() | date: 'shortTime'}}</h3>
             <p class="mat-small" *ngIf="item.to.scheduled">Scheduled {{item.to.scheduled.toDate() | date: 'shortTime'}}</p>
         </div>
-        <br/>
-        <br/>
     </div>
 </div>

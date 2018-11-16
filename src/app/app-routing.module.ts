@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TrainStatusComponent } from './train-status/train-status.component';
 
 const routes: Routes = [
+    { path: ':routeId', component: TrainStatusComponent },
     { path: '**', component: TrainStatusComponent }
 ];
 

@@ -1,6 +1,6 @@
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-import { Observable, Timestamp } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export interface Station {
     station: string;
@@ -8,8 +8,8 @@ export interface Station {
 }
 
 export interface StationStop extends Station {
-    scheduled: Timestamp<any>;
-    actual: Timestamp<any>;
+    scheduled;
+    actual;
 }
 
 export interface Schedule {
@@ -19,9 +19,10 @@ export interface Schedule {
 }
 
 export interface Route {
+    lastUpdated;
     from: Station;
     to: Station;
-    schedules: Schedule[];
+    schedule: Schedule[];
 }
 
 @Injectable({
@@ -30,7 +31,7 @@ export interface Route {
 export class TrainService {
     constructor(private db: AngularFirestore) {}
     
-    getSchedules(routeId: string): Observable<Schedule> {
-        return this.db.collection('routes').doc<Schedule>(routeId).valueChanges();
+    getSchedules(routeId: string): Observable<Route> {
+        return this.db.collection('routes').doc<Route>(routeId).valueChanges();
     }
 }
