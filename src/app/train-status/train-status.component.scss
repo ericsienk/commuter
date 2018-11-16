@@ -5,7 +5,8 @@
 
 .item-container {
     padding: 9px;
-    max-width: 285px;
+    width: calc(100% - 18px);
+    max-width: 450px;
 }
 
 .mat-small {
