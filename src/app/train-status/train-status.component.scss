@@ -7,10 +7,15 @@
     padding: 9px;
     width: calc(100% - 18px);
     max-width: 450px;
+    display: inline-block;
 }
 
 .mat-small {
     color: #666;
+}
+
+.transition-color {
+    transition: .35s color;
 }
 
 .late {

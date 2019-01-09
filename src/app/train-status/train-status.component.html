@@ -1,21 +1,24 @@
 <div *ngIf="trainRouteFiltered" class="item-container">
     <h2 class="margin-0px blue">{{trainRouteFiltered.from.station}} to {{trainRouteFiltered.to.station}}</h2>
-    <p class="mat-small">Last updated {{trainRouteFiltered.lastUpdated.toDate() | date: 'medium'}}</p>
+    <p class="mat-small" style="display:inline-block">Last updated {{trainRouteFiltered.lastUpdated.toDate() | date: 'medium'}}</p>
+    <div style="float:right">
+        <input id="cbShowAll" [(ngModel)]="showAll" (ngModelChange)="filter()" type="checkbox" /><label for="cbShowAll">Show all</label>
+    </div>
     <div *ngFor="let item of trainRouteFiltered.schedule" class="item">
         <span class="blue">{{item.trainNumber}}</span>
         <div>
             <div class="mat-small">Depart</div>
-            <h3 class="margin-0px" *ngIf="item.from.actual" [ngClass]="item.from.indicator">
+            <h3 class="margin-0px transition-color" *ngIf="item.from.actual" [ngClass]="item.from.indicator">
                 {{item.from.actual.toDate() | date: 'shortTime'}}
-                <span *ngIf="item.from.timeDiff" class="mat-small">{{item.from.timeDiff ? '+': ''}}{{item.from.timeDiff | date: 'm'}} min</span>
+                <span *ngIf="item.from.timeDiff" class="mat-small">{{item.from.timeDiff | timeDiff }}</span>
             </h3>
             <p class="mat-small" *ngIf="item.from.scheduled">Scheduled {{item.from.scheduled.toDate() | date: 'shortTime'}}</p>
         </div>
         <div>
             <div class="mat-small">Arrive</div>
-            <h3 class="margin-0px" *ngIf="item.to.actual" [ngClass]="item.to.indicator">
+            <h3 class="margin-0px transition-color" *ngIf="item.to.actual" [ngClass]="item.to.indicator">
                 {{item.to.actual.toDate() | date: 'shortTime'}}
-                <span *ngIf="item.to.timeDiff" class="mat-small">{{item.to.timeDiff ? '+': ''}}{{item.to.timeDiff | date: 'm'}} min</span>
+                <span *ngIf="item.to.timeDiff" class="mat-small">{{ item.to.timeDiff | timeDiff }}</span>
             </h3>
             <p class="mat-small margin-0px" *ngIf="item.to.scheduled">Scheduled {{item.to.scheduled.toDate() | date: 'shortTime'}}</p>
         </div>
