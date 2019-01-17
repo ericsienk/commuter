@@ -66,3 +66,7 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
 .blue {
   color: mat-color($candy-app-primary);
 }
+
+.mat-slide-toggle-bar {
+  margin-top: -4px;
+}
