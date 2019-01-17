@@ -1,26 +1,15 @@
 <div *ngIf="trainRouteFiltered" class="item-container">
-    <h2 class="margin-0px blue">{{trainRouteFiltered.from.station}} to {{trainRouteFiltered.to.station}}</h2>
-    <p class="mat-small" style="display:inline-block">Last updated {{trainRouteFiltered.lastUpdated.toDate() | date: 'medium'}}</p>
-    <div style="float:right">
-        <input id="cbShowAll" [(ngModel)]="showAll" (ngModelChange)="filter()" type="checkbox" /><label for="cbShowAll">Show all</label>
+    <h2 class="margin-0px blue" style="display:inline-block">{{trainRouteFiltered.from.station}} to {{trainRouteFiltered.to.station}}</h2>
+    <div style="float:right; margin-top:4px;">
+        <mat-slide-toggle 
+        (change)="onShowAllToggle($event)">
+          Show all
+        </mat-slide-toggle>
     </div>
+    <p class="mat-small">Last updated {{trainRouteFiltered.lastUpdated.toDate() | date: 'medium'}}</p>
     <div *ngFor="let item of trainRouteFiltered.schedule" class="item">
         <span class="blue">{{item.trainNumber}}</span>
-        <div>
-            <div class="mat-small">Depart</div>
-            <h3 class="margin-0px transition-color" *ngIf="item.from.actual" [ngClass]="item.from.indicator">
-                {{item.from.actual.toDate() | date: 'shortTime'}}
-                <span *ngIf="item.from.timeDiff" class="mat-small">{{item.from.timeDiff | timeDiff }}</span>
-            </h3>
-            <p class="mat-small" *ngIf="item.from.scheduled">Scheduled {{item.from.scheduled.toDate() | date: 'shortTime'}}</p>
-        </div>
-        <div>
-            <div class="mat-small">Arrive</div>
-            <h3 class="margin-0px transition-color" *ngIf="item.to.actual" [ngClass]="item.to.indicator">
-                {{item.to.actual.toDate() | date: 'shortTime'}}
-                <span *ngIf="item.to.timeDiff" class="mat-small">{{ item.to.timeDiff | timeDiff }}</span>
-            </h3>
-            <p class="mat-small margin-0px" *ngIf="item.to.scheduled">Scheduled {{item.to.scheduled.toDate() | date: 'shortTime'}}</p>
-        </div>
+        <com-station-stop [label]="'Depart'" [stationStop]="item.from"></com-station-stop>
+        <com-station-stop [label]="'Arrive'" [stationStop]="item.to"></com-station-stop>
     </div>
 </div>

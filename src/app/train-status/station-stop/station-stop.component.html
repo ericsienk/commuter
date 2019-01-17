@@ -1,0 +1,8 @@
+<div>
+    <div class="mat-small">{{label}}</div>
+    <h3 class="margin-0px transition-color" *ngIf="stationStop.actual" [ngClass]="stationStop.indicator">
+        {{stationStop.actual.toDate() | date: 'shortTime'}}
+        <span *ngIf="stationStop.timeDiff" class="mat-small">{{stationStop.timeDiff | timeDiff }}</span>
+    </h3>
+    <p class="mat-small" *ngIf="stationStop.scheduled">Scheduled {{stationStop.scheduled.toDate() | date: 'shortTime'}}</p>
+</div>
